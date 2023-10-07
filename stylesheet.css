@@ -290,6 +290,10 @@ nav {
     background: #007580;
 }
 
+#skills-section {
+    height: 100vh;
+}
+
 .skills {
     background: #393e46;
     padding: 100px 10%;
@@ -394,6 +398,10 @@ li {
 
 #three-logos {
     width: 250px;
+}
+
+#contact-section {
+    height: 100vh;
 }
 
 .contact {
