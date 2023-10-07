@@ -10,24 +10,40 @@ const maxTitleLength = Math.max(...titles.map((title) => title.length));
 let currentTitleIndex = 0;
 let currentCharIndex = 0;
 let isDeleting = false;
+
 let isArrowVisible = true;
 
-const imagesContainer = document.querySelector(".xpensr-images");
-const xpensrai_images = imagesContainer.querySelectorAll(".xpensrai-image");
-let xpensraiIndex = 0;
-
-const titleElement = document.querySelector(".title-text");
-const cursorElement = document.querySelector(".typing-cursor");
-const skillsLink = document.querySelector('a[href="#skills"]');
-const imagesContainer2 = document.querySelector(".hanger-images");
-const downArrow = document.getElementById("down-arrow");
+const IMAGE_LOOP = 4;
+let imgIndex = 0;
 
 const homeLink = document.querySelector('a[href="#home"]');
-const contactLink = document.querySelector('a[href="#contact"]');
 const projectsLink = document.querySelector('a[href="#projects"]');
-const projectsSection = document.querySelector(".projects");
+const skillsLink = document.querySelector('a[href="#skills"]');
+const cvLink = document.getElementById("cv-link");
+const contactLink = document.querySelector('a[href="#contact"]');
 
-const hanger_images = imagesContainer2.querySelectorAll(".hanger-image");
+const homeSection = document.querySelector("#home-section");
+const skillsSection = document.querySelector("#skills-section");
+const projectsSection = document.querySelector("#projects-section");
+const contactSection = document.querySelector("#contact-section");
+
+const titleElement = document.querySelector(".title-text");
+const titleContent = document.querySelector(".title-content");
+const cursorElement = document.querySelector(".typing-cursor");
+
+const downArrow = document.getElementById("down-arrow");
+
+const xpensraiImages = [...document.querySelectorAll("#xpenser-imgs > img")];
+const hangerImages = [...document.querySelectorAll("#hanger-imgs > img")];
+const muscleImages = [...document.querySelectorAll("#muscle-imgs > img")];
+
+function init() {
+    setTimeout(() => {
+        typeTitle();
+    }, 2000);
+
+    setInterval(showNextProjectImage, 2500);
+}
 
 function typeTitle() {
     const currentTitle = titles[currentTitleIndex];
@@ -69,45 +85,22 @@ function typeTitle() {
     }
 }
 
-function startTyping() {
-    setTimeout(() => {
-        typeTitle();
-    }, 2000);
-}
-
-startTyping();
-
-document.addEventListener("DOMContentLoaded", () => {
-    const cvLink = document.getElementById("cv-link");
-
-    cvLink.addEventListener("click", (event) => {
-        event.preventDefault();
-
-        const downloadLink = document.createElement("a");
-        downloadLink.href = ".assets/documents/Ahmad_Ali_CV.pdf";
-        downloadLink.download = "Ahmad_Ali_CV.pdf";
-        downloadLink.style.display = "none";
-
-        document.body.appendChild(downloadLink);
-        downloadLink.click();
-
-        document.body.removeChild(downloadLink);
-    });
-});
-
 function scrollToProjectsAndHideArrow() {
     projectsSection.scrollIntoView({ behavior: "smooth" });
-
     downArrow.style.display = "none";
-
-    downArrow.removeEventListener("click", scrollToProjectsAndHideArrow);
-
-    setTimeout(() => {
-        downArrow.addEventListener("click", scrollToProjectsAndHideArrow);
-    }, 1000);
 }
 
-downArrow.addEventListener("click", scrollToProjectsAndHideArrow);
+function showNextProjectImage() {
+    xpensraiImages.at(imgIndex).classList.toggle("active");
+    hangerImages.at(imgIndex).classList.toggle("active");
+    muscleImages.at(imgIndex).classList.toggle("active");
+
+    imgIndex = (imgIndex + 1) % IMAGE_LOOP;
+
+    xpensraiImages.at(imgIndex).classList.toggle("active");
+    hangerImages.at(imgIndex).classList.toggle("active");
+    muscleImages.at(imgIndex).classList.toggle("active");
+}
 
 window.addEventListener("scroll", () => {
     if (window.scrollY > 100) {
@@ -123,62 +116,41 @@ window.addEventListener("scroll", () => {
     }
 });
 
-xpensrai_images[xpensraiIndex].classList.add("active");
-
-function showNextXpensraiImage() {
-    xpensrai_images[xpensraiIndex].classList.remove("active");
-    xpensraiIndex = (xpensraiIndex + 1) % xpensrai_images.length;
-    xpensrai_images[xpensraiIndex].classList.add("active");
+function scrollIntoView(el) {
+    el.scrollIntoView({ behavior: "smooth" });
 }
 
-let hangerIndex = 0;
-hanger_images[hangerIndex].classList.add("active");
-
-function showNextHangerImage() {
-    hanger_images[hangerIndex].classList.remove("active");
-    hangerIndex = (hangerIndex + 1) % hanger_images.length;
-    hanger_images[hangerIndex].classList.add("active");
-}
-
-const imagesContainer3 = document.querySelector(".muscle-images");
-const muscle_images = imagesContainer3.querySelectorAll(".muscle-image");
-let muscleIndex = 0;
-muscle_images[muscleIndex].classList.add("active");
-
-function showNextMuscleImage() {
-    muscle_images[muscleIndex].classList.remove("active");
-    muscleIndex = (muscleIndex + 1) % muscle_images.length;
-    muscle_images[muscleIndex].classList.add("active");
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-    homeLink.addEventListener("click", (event) => {
-        event.preventDefault();
-        document.querySelector("#home").scrollIntoView({ behavior: "smooth" });
-    });
-
-    projectsLink.addEventListener("click", (event) => {
-        event.preventDefault();
-        document
-            .querySelector("#projects")
-            .scrollIntoView({ behavior: "smooth" });
-    });
-
-    skillsLink.addEventListener("click", (event) => {
-        event.preventDefault();
-        document
-            .querySelector("#skills")
-            .scrollIntoView({ behavior: "smooth" });
-    });
-
-    contactLink.addEventListener("click", (event) => {
-        event.preventDefault();
-        document
-            .querySelector("#contact")
-            .scrollIntoView({ behavior: "smooth" });
-    });
+homeLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    scrollIntoView(homeSection);
 });
 
-setInterval(showNextXpensraiImage, 2000);
-setInterval(showNextHangerImage, 2000);
-setInterval(showNextMuscleImage, 2000);
+projectsLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    scrollIntoView(projectsSection);
+});
+
+skillsLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    scrollIntoView(skillsSection);
+});
+
+cvLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    const link = document.createElement("a");
+    link.href = ".assets/documents/Ahmad_Ali_CV.pdf";
+    link.download = "Ahmad_Ali_CV.pdf";
+    link.style.display = "none";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+});
+
+contactLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    scrollIntoView(contactSection);
+});
+
+downArrow.addEventListener("click", scrollToProjectsAndHideArrow);
+
+init();

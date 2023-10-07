@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background: url(/assets/images/hero-background.svg) bottom center no-repeat
         #222831;
@@ -10,10 +14,6 @@ body {
 body::-webkit-scrollbar {
     display: none;
 }
-
-/* * {
-    outline: 2px solid lime;
-} */
 
 #aa-logo {
     width: 50px;
@@ -81,22 +81,16 @@ nav {
 }
 
 .home {
-    position: relative;
-    width: 100%;
-    justify-content: space-between;
     height: 100vh;
+    width: 100%;
     display: flex;
-    align-items: start;
-    padding: 12rem 8rem;
-    background: transparent;
-    margin: 0;
+    align-items: center;
     color: #eeeeee;
 }
 
 .home-content {
     max-width: 600px;
     color: #eeeeee;
-
     background: rgba(0, 173, 181, 0.42);
     border-radius: 16px;
     box-shadow: 0px 10px 15px -3px rgba(23, 82, 98, 0.1),
@@ -104,10 +98,10 @@ nav {
     backdrop-filter: blur(10.2px);
     -webkit-backdrop-filter: blur(10.2px);
     padding: 40px;
-
     display: flex;
     flex-direction: column;
     gap: 15px;
+    margin: 0 10vw;
     font-size: 700;
 }
 
@@ -151,13 +145,14 @@ nav {
 .icons {
     text-align: center;
     margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
 
 .icons img {
-    width: 30px;
-    height: 30px;
-    margin: 0 20px;
-    display: inline-block;
+    width: 50px;
+    aspect-ratio: 1;
 }
 
 .icons img:hover {
@@ -166,28 +161,11 @@ nav {
     cursor: pointer;
 }
 
-.arrow-container {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    animation: bounce 1s infinite alternate;
-}
-
 .arrow {
     width: 40px;
     height: 40px;
     background: url("./assets/icons/nav-arrow.png") no-repeat center center;
     background-size: contain;
-}
-
-@keyframes bounce {
-    0% {
-        transform: translateY(0);
-    }
-    100% {
-        transform: translateY(-10px);
-    }
 }
 
 .arrow:hover {
@@ -205,84 +183,98 @@ nav {
     z-index: 100;
 }
 
-.projects {
+#projects-section {
     background: #222831;
     display: flex;
-    text-align: center;
+    align-items: center;
+    justify-content: center;
     height: 100vh;
+    width: 100%;
+}
+
+.projects-wrapper {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .project {
-    display: inline-block;
-    margin: 20px;
-    background: #eeeeee;
-    border-radius: 10px;
+    height: 100%;
+    max-width: 500px;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 70%;
     transition: 0.3s ease-in-out;
 }
 
-.project-test {
-    background: #eeeeee;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.project-content-test {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
 .project-images {
-    outline: 2px solid lime;
+    height: 300px;
+    min-height: 250px;
+    max-height: 300px;
+    width: 100%;;
 }
 
-/* .xpensr-images-test {
+.img-wrapper {
+    width: 100%;
+
+    min-height: 330px;
+    overflow: hidden;
+}
+
+.project-image {
+    display: none;
+    opacity: 0;
+    width: 100%;
+    min-height: 300px;
+    height: 100%
+    transition: opacity 0.4s ease-in-out;
+}
+
+.project-image.active {
+    display: block;
+    opacity: 1;
+}
+
+.project-description {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 100%;
+    padding: 15px;
+    flex-grow: 1;
+}
+
+.btn-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
-    position: relative;
-    overflow: hidden;
-    height: 250px;
-    width: 100%;
-} */
-
-.project-content {
-    padding: 20px;
-    text-align: left;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-.project img {
-    max-width: 100%;
-    height: 250px;
-    border-radius: 20px;
+    margin-top: auto;
+    padding: 10px 0;
 }
 
 .project h3 {
     font-size: 24px;
     font-weight: bold;
-    margin-top: 10px;
 }
 
 .project p {
     font-size: 16px;
-    margin-top: 10px;
 }
 
 .project a {
+    padding: 5px 10px;
     display: inline-block;
     background: #00adb5;
     color: #fff;
-    padding: 10px 20px;
     border-radius: 5px;
     text-decoration: none;
-    margin-top: 10px;
     font-weight: bold;
     transition: 0.3s ease-in-out;
     justify-content: center;
@@ -293,95 +285,9 @@ nav {
     background: #007580;
 }
 
-.my-portfolio {
-    color: #00adb5;
-    font-size: 40px;
-}
-.xpensr-images {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    position: relative;
-    overflow: hidden;
-    height: 250px;
-    width: 100%;
-}
-
-.hanger-images {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    position: relative;
-    overflow: hidden;
-    height: 250px;
-    width: 100%;
-}
-
-.muscle-images {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    position: relative;
-    overflow: hidden;
-    height: 250px;
-    width: 100%;
-}
-
-.xpensrai-image {
-    max-width: 100%;
-    height: auto;
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-    transition: opacity 0.5s ease-in-out;
-    width: 500px;
-}
-
-.xpensrai-image.active {
-    opacity: 1;
-}
-
-.hanger-image {
-    max-width: 100%;
-    height: auto;
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-    transition: opacity 0.5s ease-in-out;
-    width: 500px;
-}
-
-.hanger-image.active {
-    opacity: 1;
-}
-
-.muscle-image {
-    max-width: 100%;
-    height: auto;
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-    transition: opacity 0.5s ease-in-out;
-    width: 500px;
-}
-
-.muscle-image.active {
-    opacity: 1;
+.project a:active {
+    transform: scale(0.9);
+    background: #007580;
 }
 
 .skills {
@@ -575,4 +481,17 @@ button:hover {
     display: none;
     color: transparent;
     height: 0;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-10px);
+    }
+}
+
+.hidden {
+    display: none;
 }
