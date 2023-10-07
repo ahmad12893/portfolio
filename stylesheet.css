@@ -11,6 +11,10 @@ body::-webkit-scrollbar {
     display: none;
 }
 
+/* * {
+    outline: 2px solid lime;
+} */
+
 #aa-logo {
     width: 50px;
 }
@@ -92,8 +96,7 @@ nav {
 .home-content {
     max-width: 600px;
     color: #eeeeee;
-    margin-top: -200px;
-    /* From https://css.glass */
+
     background: rgba(0, 173, 181, 0.42);
     border-radius: 16px;
     box-shadow: 0px 10px 15px -3px rgba(23, 82, 98, 0.1),
@@ -101,18 +104,19 @@ nav {
     backdrop-filter: blur(10.2px);
     -webkit-backdrop-filter: blur(10.2px);
     padding: 40px;
-    /* opacity: 0.6; */
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    font-size: 700;
 }
 
 .home-content h3 {
-    font-size: 32px;
-    font-weight: 700;
+    font-size: 2rem;
 }
 
 .home-content h1 {
-    font-size: 56px;
-    font-size: 700;
-    margin: -3px 0 20px;
+    font-size: 4rem;
 }
 
 .developer-title,
@@ -120,13 +124,13 @@ nav {
     font-size: 20px;
     font-weight: 400;
     line-height: 1.5;
-    margin-bottom: 30px;
+
     opacity: 1;
     color: #eeeeee;
 }
 
 .title-text {
-    height: 25px;
+    height: 50px;
     color: #eeeeee;
 }
 
@@ -136,7 +140,6 @@ nav {
     height: 1em;
     background-color: #00adb5;
     vertical-align: middle;
-    margin-right: 2px;
 }
 
 @keyframes cursor-blink {
