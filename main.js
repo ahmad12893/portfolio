@@ -6,14 +6,30 @@ const titles = [
     "Software Developer",
 ];
 
+const maxTitleLength = Math.max(...titles.map((title) => title.length));
 let currentTitleIndex = 0;
 let currentCharIndex = 0;
 let isDeleting = false;
-const maxTitleLength = Math.max(...titles.map((title) => title.length));
+let isArrowVisible = true;
+
+const imagesContainer = document.querySelector(".xpensr-images");
+const xpensrai_images = imagesContainer.querySelectorAll(".xpensrai-image");
+let xpensraiIndex = 0;
+
+const titleElement = document.querySelector(".title-text");
+const cursorElement = document.querySelector(".typing-cursor");
+const skillsLink = document.querySelector('a[href="#skills"]');
+const imagesContainer2 = document.querySelector(".hanger-images");
+const downArrow = document.getElementById("down-arrow");
+
+const homeLink = document.querySelector('a[href="#home"]');
+const contactLink = document.querySelector('a[href="#contact"]');
+const projectsLink = document.querySelector('a[href="#projects"]');
+const projectsSection = document.querySelector(".projects");
+
+const hanger_images = imagesContainer2.querySelectorAll(".hanger-image");
 
 function typeTitle() {
-    const titleElement = document.querySelector(".title-text");
-    const cursorElement = document.querySelector(".typing-cursor");
     const currentTitle = titles[currentTitleIndex];
     const text = isDeleting
         ? currentTitle.slice(0, currentCharIndex - 1)
@@ -79,10 +95,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-const downArrow = document.getElementById("down-arrow");
-const projectsSection = document.querySelector(".projects");
-let isArrowVisible = true;
-
 function scrollToProjectsAndHideArrow() {
     projectsSection.scrollIntoView({ behavior: "smooth" });
 
@@ -111,10 +123,6 @@ window.addEventListener("scroll", () => {
     }
 });
 
-// const imagesContainer = document.querySelector(".xpensr-images");
-const xpensrai_images = document.querySelectorAll(".xpensrai-image");
-let xpensraiIndex = 0;
-
 xpensrai_images[xpensraiIndex].classList.add("active");
 
 function showNextXpensraiImage() {
@@ -123,9 +131,6 @@ function showNextXpensraiImage() {
     xpensrai_images[xpensraiIndex].classList.add("active");
 }
 
-const imagesContainer2 = document.querySelector(".hanger-images");
-
-const hanger_images = imagesContainer2.querySelectorAll(".hanger-image");
 let hangerIndex = 0;
 hanger_images[hangerIndex].classList.add("active");
 
@@ -146,18 +151,12 @@ function showNextMuscleImage() {
     muscle_images[muscleIndex].classList.add("active");
 }
 
-setInterval(showNextXpensraiImage, 2000);
-setInterval(showNextHangerImage, 2000);
-setInterval(showNextMuscleImage, 2000);
-
 document.addEventListener("DOMContentLoaded", () => {
-    const homeLink = document.querySelector('a[href="#home"]');
     homeLink.addEventListener("click", (event) => {
         event.preventDefault();
         document.querySelector("#home").scrollIntoView({ behavior: "smooth" });
     });
 
-    const projectsLink = document.querySelector('a[href="#projects"]');
     projectsLink.addEventListener("click", (event) => {
         event.preventDefault();
         document
@@ -165,7 +164,6 @@ document.addEventListener("DOMContentLoaded", () => {
             .scrollIntoView({ behavior: "smooth" });
     });
 
-    const skillsLink = document.querySelector('a[href="#skills"]');
     skillsLink.addEventListener("click", (event) => {
         event.preventDefault();
         document
@@ -173,7 +171,6 @@ document.addEventListener("DOMContentLoaded", () => {
             .scrollIntoView({ behavior: "smooth" });
     });
 
-    const contactLink = document.querySelector('a[href="#contact"]');
     contactLink.addEventListener("click", (event) => {
         event.preventDefault();
         document
@@ -181,3 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .scrollIntoView({ behavior: "smooth" });
     });
 });
+
+setInterval(showNextXpensraiImage, 2000);
+setInterval(showNextHangerImage, 2000);
+setInterval(showNextMuscleImage, 2000);
