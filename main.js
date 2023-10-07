@@ -1,177 +1,156 @@
 const titles = [
-  'Full Stack Developer',
-  'Back End Developer',
-  'Front End Developer',
-  'Web Developer',
-  'Software Developer',
+    "Full Stack Developer",
+    "Back End Developer",
+    "Front End Developer",
+    "Web Developer",
+    "Software Developer",
 ];
 
+const maxTitleLength = Math.max(...titles.map((title) => title.length));
 let currentTitleIndex = 0;
 let currentCharIndex = 0;
 let isDeleting = false;
-const maxTitleLength = Math.max(...titles.map((title) => title.length));
 
-function typeTitle() {
-  const titleElement = document.querySelector('.title-text');
-  const cursorElement = document.querySelector('.typing-cursor');
-  const currentTitle = titles[currentTitleIndex];
-  const text = isDeleting
-    ? currentTitle.slice(0, currentCharIndex - 1)
-    : currentTitle.slice(0, currentCharIndex + 1);
-
-  const placeholderText = ' '.repeat(maxTitleLength - text.length);
-
-  titleElement.querySelector(
-    '.title-content'
-  ).textContent = `${text}${placeholderText}`;
-
-  if (!isDeleting && text === currentTitle) {
-    isDeleting = true;
-    cursorElement.style.display = 'none';
-    setTimeout(() => {
-      cursorElement.style.display = 'inline-block';
-      setTimeout(() => {
-        typeTitle();
-      }, 400);
-    }, 1000);
-  } else if (isDeleting && text === '') {
-    isDeleting = false;
-    cursorElement.style.display = 'inline-block';
-    setTimeout(() => {
-      typeTitle();
-    }, 400);
-
-    currentTitleIndex = (currentTitleIndex + 1) % titles.length;
-  } else {
-    setTimeout(
-      () => {
-        isDeleting ? currentCharIndex-- : currentCharIndex++;
-        typeTitle();
-      },
-      isDeleting ? 90 : 100
-    );
-  }
-}
-
-function startTyping() {
-  setTimeout(() => {
-    typeTitle();
-  }, 2000);
-}
-
-startTyping();
-
-document.addEventListener('DOMContentLoaded', () => {
-  const cvLink = document.getElementById('cv-link');
-
-  cvLink.addEventListener('click', (event) => {
-    event.preventDefault();
-
-    const downloadLink = document.createElement('a');
-    downloadLink.href = './documents/Ahmad Ali (CV).pdf';
-    downloadLink.download = 'Ahmad Ali (CV).pdf';
-    downloadLink.style.display = 'none';
-
-    document.body.appendChild(downloadLink);
-    downloadLink.click();
-
-    document.body.removeChild(downloadLink);
-  });
-});
-
-const downArrow = document.getElementById('down-arrow');
-const portfolioSection = document.querySelector('.portfolio');
 let isArrowVisible = true;
 
-function scrollToPortfolioAndHideArrow() {
-  portfolioSection.scrollIntoView({ behavior: 'smooth' });
+const IMAGE_LOOP = 4;
+let imgIndex = 0;
 
-  downArrow.style.display = 'none';
+const homeLink = document.querySelector('a[href="#home"]');
+const projectsLink = document.querySelector('a[href="#projects"]');
+const skillsLink = document.querySelector('a[href="#skills"]');
+const cvLink = document.getElementById("cv-link");
+const contactLink = document.querySelector('a[href="#contact"]');
 
-  downArrow.removeEventListener('click', scrollToPortfolioAndHideArrow);
+const homeSection = document.querySelector("#home-section");
+const skillsSection = document.querySelector("#skills-section");
+const projectsSection = document.querySelector("#projects-section");
+const contactSection = document.querySelector("#contact-section");
 
-  setTimeout(() => {
-    downArrow.addEventListener('click', scrollToPortfolioAndHideArrow);
-  }, 1000);
+const titleElement = document.querySelector(".title-text");
+const titleContent = document.querySelector(".title-content");
+const cursorElement = document.querySelector(".typing-cursor");
+
+const downArrow = document.getElementById("down-arrow");
+
+const xpensraiImages = [...document.querySelectorAll("#xpenser-imgs > img")];
+const hangerImages = [...document.querySelectorAll("#hanger-imgs > img")];
+const muscleImages = [...document.querySelectorAll("#muscle-imgs > img")];
+
+function init() {
+    setTimeout(() => {
+        typeTitle();
+    }, 2000);
+
+    setInterval(showNextProjectImage, 2500);
 }
 
-downArrow.addEventListener('click', scrollToPortfolioAndHideArrow);
+function typeTitle() {
+    const currentTitle = titles[currentTitleIndex];
+    const text = isDeleting
+        ? currentTitle.slice(0, currentCharIndex - 1)
+        : currentTitle.slice(0, currentCharIndex + 1);
 
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 100) {
-    if (isArrowVisible) {
-      downArrow.style.display = 'none';
-      isArrowVisible = false;
+    const placeholderText = " ".repeat(maxTitleLength - text.length);
+
+    titleElement.querySelector(
+        ".title-content"
+    ).textContent = `${text}${placeholderText}`;
+
+    if (!isDeleting && text === currentTitle) {
+        isDeleting = true;
+        cursorElement.style.display = "none";
+        setTimeout(() => {
+            cursorElement.style.display = "inline-block";
+            setTimeout(() => {
+                typeTitle();
+            }, 400);
+        }, 1000);
+    } else if (isDeleting && text === "") {
+        isDeleting = false;
+        cursorElement.style.display = "inline-block";
+        setTimeout(() => {
+            typeTitle();
+        }, 400);
+
+        currentTitleIndex = (currentTitleIndex + 1) % titles.length;
+    } else {
+        setTimeout(
+            () => {
+                isDeleting ? currentCharIndex-- : currentCharIndex++;
+                typeTitle();
+            },
+            isDeleting ? 90 : 100
+        );
     }
-  } else {
-    if (!isArrowVisible) {
-      downArrow.style.display = 'block';
-      isArrowVisible = true;
+}
+
+function scrollToProjectsAndHideArrow() {
+    projectsSection.scrollIntoView({ behavior: "smooth" });
+    downArrow.style.display = "none";
+}
+
+function showNextProjectImage() {
+    xpensraiImages.at(imgIndex).classList.toggle("active");
+    hangerImages.at(imgIndex).classList.toggle("active");
+    muscleImages.at(imgIndex).classList.toggle("active");
+
+    imgIndex = (imgIndex + 1) % IMAGE_LOOP;
+
+    xpensraiImages.at(imgIndex).classList.toggle("active");
+    hangerImages.at(imgIndex).classList.toggle("active");
+    muscleImages.at(imgIndex).classList.toggle("active");
+}
+
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 100) {
+        if (isArrowVisible) {
+            downArrow.style.display = "none";
+            isArrowVisible = false;
+        }
+    } else {
+        if (!isArrowVisible) {
+            downArrow.style.display = "block";
+            isArrowVisible = true;
+        }
     }
-  }
 });
 
-const imagesContainer = document.querySelector('.xpensr-images');
-const xpensrai_images = imagesContainer.querySelectorAll('.xpensrai-image');
-let xpensraiIndex = 0;
-
-xpensrai_images[xpensraiIndex].classList.add('active');
-
-function showNextXpensraiImage() {
-  xpensrai_images[xpensraiIndex].classList.remove('active');
-  xpensraiIndex = (xpensraiIndex + 1) % xpensrai_images.length;
-  xpensrai_images[xpensraiIndex].classList.add('active');
+function scrollIntoView(el) {
+    el.scrollIntoView({ behavior: "smooth" });
 }
 
-const imagesContainer2 = document.querySelector('.hanger-images');
-
-const hanger_images = imagesContainer2.querySelectorAll('.hanger-image');
-let hangerIndex = 0;
-hanger_images[hangerIndex].classList.add('active');
-
-function showNextHangerImage() {
-  hanger_images[hangerIndex].classList.remove('active');
-  hangerIndex = (hangerIndex + 1) % hanger_images.length;
-  hanger_images[hangerIndex].classList.add('active');
-}
-
-const imagesContainer3 = document.querySelector('.muscle-images');
-const muscle_images = imagesContainer3.querySelectorAll('.muscle-image');
-let muscleIndex = 0;
-muscle_images[muscleIndex].classList.add('active');
-
-function showNextMuscleImage() {
-  muscle_images[muscleIndex].classList.remove('active');
-  muscleIndex = (muscleIndex + 1) % muscle_images.length;
-  muscle_images[muscleIndex].classList.add('active');
-}
-
-setInterval(showNextXpensraiImage, 2000);
-setInterval(showNextHangerImage, 2000);
-setInterval(showNextMuscleImage, 2000);
-
-document.addEventListener('DOMContentLoaded', () => {
-  const homeLink = document.querySelector('a[href="#home"]');
-  homeLink.addEventListener('click', (event) => {
-    event.preventDefault();
-    document.querySelector('#home').scrollIntoView({ behavior: 'smooth' });
-  });
-
-  const portfolioLink = document.querySelector('a[href="#portfolio"]');
-  portfolioLink.addEventListener('click', (event) => {
-    event.preventDefault();
-    document.querySelector('#portfolio').scrollIntoView({ behavior: 'smooth' });
-  });
-
-  const skillsLink = document.querySelector('a[href="#skills"]');
-  skillsLink.addEventListener('click', (event) => {
-    event.preventDefault();
-    document.querySelector('#skills').scrollIntoView({ behavior: 'smooth' });
-  });
-
-  const contactLink = document.querySelector('a[href="#contact"]');
-  contactLink.addEventListener('click', (event) => {
-    event.preventDefault();
-    document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
-  });
+homeLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    scrollIntoView(homeSection);
 });
+
+projectsLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    scrollIntoView(projectsSection);
+});
+
+skillsLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    scrollIntoView(skillsSection);
+});
+
+cvLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    const link = document.createElement("a");
+    link.href = ".assets/documents/Ahmad_Ali_CV.pdf";
+    link.download = "Ahmad_Ali_CV.pdf";
+    link.style.display = "none";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+});
+
+contactLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    scrollIntoView(contactSection);
+});
+
+downArrow.addEventListener("click", scrollToProjectsAndHideArrow);
+
+init();
