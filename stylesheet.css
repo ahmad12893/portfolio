@@ -86,8 +86,8 @@ nav {
     justify-content: space-between;
     height: 100vh;
     display: flex;
-    align-items: center;
-    padding: 70px 10% 0;
+    align-items: start;
+    padding: 12rem 8rem;
     background: transparent;
     margin: 0;
     color: #eeeeee;
@@ -207,8 +207,9 @@ nav {
 
 .projects {
     background: #222831;
-    padding: 100px 10%;
+    display: flex;
     text-align: center;
+    height: 100vh;
 }
 
 .project {
@@ -220,6 +221,33 @@ nav {
     width: 70%;
     transition: 0.3s ease-in-out;
 }
+
+.project-test {
+    background: #eeeeee;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.project-content-test {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.project-images {
+    outline: 2px solid lime;
+}
+
+/* .xpensr-images-test {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
+    height: 250px;
+    width: 100%;
+} */
 
 .project-content {
     padding: 20px;

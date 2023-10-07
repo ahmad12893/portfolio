@@ -111,8 +111,8 @@ window.addEventListener("scroll", () => {
     }
 });
 
-const imagesContainer = document.querySelector(".xpensr-images");
-const xpensrai_images = imagesContainer.querySelectorAll(".xpensrai-image");
+// const imagesContainer = document.querySelector(".xpensr-images");
+const xpensrai_images = document.querySelectorAll(".xpensrai-image");
 let xpensraiIndex = 0;
 
 xpensrai_images[xpensraiIndex].classList.add("active");
