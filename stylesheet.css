@@ -1,3 +1,9 @@
+body {
+    background: url(/assets/images/hero-background.svg) bottom center no-repeat
+        #222831;
+    background-size: cover;
+}
+
 .header {
     top: 0;
     left: 0;
@@ -10,7 +16,7 @@
     background: transparent;
     position: fixed;
     z-index: 100;
-    background: #373b43;
+    background: #373c43;
     /* opacity: 0.4; */
 }
 
@@ -18,6 +24,7 @@
     top: 0;
     left: 0;
     width: 100%;
+    background: #393e46;
     padding: 20px 10%;
     background: transparent;
     display: flex;
@@ -159,7 +166,7 @@
 .arrow {
     width: 40px;
     height: 40px;
-    background: url("./icons/arrow-213-256.png") no-repeat center center;
+    background: url("./assets/icons/nav-arrow.png") no-repeat center center;
     background-size: contain;
 }
 
