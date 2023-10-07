@@ -80,22 +80,22 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 const downArrow = document.getElementById("down-arrow");
-const portfolioSection = document.querySelector(".portfolio");
+const projectsSection = document.querySelector(".projects");
 let isArrowVisible = true;
 
-function scrollToPortfolioAndHideArrow() {
-    portfolioSection.scrollIntoView({ behavior: "smooth" });
+function scrollToProjectsAndHideArrow() {
+    projectsSection.scrollIntoView({ behavior: "smooth" });
 
     downArrow.style.display = "none";
 
-    downArrow.removeEventListener("click", scrollToPortfolioAndHideArrow);
+    downArrow.removeEventListener("click", scrollToProjectsAndHideArrow);
 
     setTimeout(() => {
-        downArrow.addEventListener("click", scrollToPortfolioAndHideArrow);
+        downArrow.addEventListener("click", scrollToProjectsAndHideArrow);
     }, 1000);
 }
 
-downArrow.addEventListener("click", scrollToPortfolioAndHideArrow);
+downArrow.addEventListener("click", scrollToProjectsAndHideArrow);
 
 window.addEventListener("scroll", () => {
     if (window.scrollY > 100) {
@@ -157,11 +157,11 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelector("#home").scrollIntoView({ behavior: "smooth" });
     });
 
-    const portfolioLink = document.querySelector('a[href="#portfolio"]');
-    portfolioLink.addEventListener("click", (event) => {
+    const projectsLink = document.querySelector('a[href="#projects"]');
+    projectsLink.addEventListener("click", (event) => {
         event.preventDefault();
         document
-            .querySelector("#portfolio")
+            .querySelector("#projects")
             .scrollIntoView({ behavior: "smooth" });
     });
 

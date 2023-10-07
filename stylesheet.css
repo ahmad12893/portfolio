@@ -4,40 +4,42 @@ body {
     background-size: cover;
     -ms-overflow-style: none;
     scrollbar-width: none;
+    min-width: 320px; /* smallest screen size in use */
 }
 
 body::-webkit-scrollbar {
     display: none;
 }
 
+#aa-logo {
+    width: 50px;
+}
+#logo-container {
+    outline: 2px solid green;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .header {
+    background: #373c43;
     top: 0;
     left: 0;
     width: 100%;
     height: 80px;
-    display: 50px;
-    justify-content: space-evenly;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    padding: 30px 10%;
-    background: transparent;
     position: fixed;
     z-index: 100;
-    background: #373c43;
+    padding: 0 2rem;
 }
 
-.navbar {
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: #393e46;
-    padding: 20px 10%;
-    background: transparent;
+nav {
+    height: 100%;
     display: flex;
-    justify-content: space-around;
     align-items: center;
     z-index: 100;
-    position: fixed;
-    margin-left: 100px;
 }
 
 .logo {
@@ -66,7 +68,7 @@ body::-webkit-scrollbar {
     text-decoration: none;
     font-weight: 600;
     margin-left: 35px;
-    padding: 3px 3px 3px 0;
+
     transition: 0.3s;
 }
 
@@ -200,7 +202,7 @@ body::-webkit-scrollbar {
     z-index: 100;
 }
 
-.portfolio {
+.projects {
     background: #222831;
     padding: 100px 10%;
     text-align: center;
@@ -210,15 +212,12 @@ body::-webkit-scrollbar {
     display: inline-block;
     margin: 20px;
     background: #eeeeee;
-    border-radius: 20px;
+    border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     width: 70%;
     transition: 0.3s ease-in-out;
 }
 
-.project:hover {
-    transform: scale(1.05);
-}
 .project-content {
     padding: 20px;
     text-align: left;
