@@ -2,6 +2,12 @@ body {
     background: url(/assets/images/hero-background.svg) bottom center no-repeat
         #222831;
     background-size: cover;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+    display: none;
 }
 
 .header {
@@ -17,7 +23,6 @@ body {
     position: fixed;
     z-index: 100;
     background: #373c43;
-    /* opacity: 0.4; */
 }
 
 .navbar {
@@ -62,6 +67,7 @@ body {
     font-weight: 600;
     margin-left: 35px;
     padding: 3px 3px 3px 0;
+    transition: 0.3s;
 }
 
 .navbar a:hover {
