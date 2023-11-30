@@ -34,8 +34,8 @@ body::-webkit-scrollbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: fixed;
-  z-index: 100;
+  position: r;
+  z-index: 0;
   padding: 0 2rem;
 }
 
@@ -44,6 +44,7 @@ nav {
   display: flex;
   align-items: center;
   z-index: 100;
+  transition: 0.3s ease-in-out; /* Adding transitions */
 }
 
 .logo {
@@ -164,7 +165,7 @@ nav {
 .arrow {
   width: 40px;
   height: 40px;
-  background: url('./assets/icons/nav-arrow.png') no-repeat center center;
+  background: url("./assets/icons/nav-arrow.png") no-repeat center center;
   background-size: contain;
 }
 
@@ -364,6 +365,7 @@ li {
   justify-content: center;
   width: 150px;
   margin: 15px;
+  height: 100%;
 }
 
 #nextjs {
@@ -452,8 +454,8 @@ label {
   text-align: center;
 }
 
-input[type='text'],
-input[type='email'],
+input[type="text"],
+input[type="email"],
 textarea {
   width: 100%;
   padding: 10px;
@@ -512,4 +514,187 @@ button:hover {
 
 .hidden {
   display: none;
+}
+
+.toggle-button {
+  display: none;
+  cursor: pointer;
+}
+
+/* Tablets in landscape mode */
+@media screen and (min-width: 768px) and (max-width: 1523px) {
+  .home {
+    height: 150vh;
+    width: 100%;
+    display: block;
+    align-items: center;
+    color: #eeeeee;
+    padding-top: 90px;
+}
+.skills{
+  margin-top: 755px;
+}
+.contact{
+  margin-top:750px;
+}
+}
+@media screen and (max-width: 1041px){
+  .home {
+    height: 190vh;
+    width: 100%;
+    display: block;
+    align-items: center;
+    color: #eeeeee;
+    padding-top: 90px;
+}
+.skills{
+  margin-top: 955px;
+}
+.contact{
+  margin-top:650px;
+}
+}
+@media screen and (max-width: 955px){
+  .skills{
+    margin-top: 1355px;
+  }
+  .contact{
+    margin-top:950px;
+  }
+ 
+}
+
+@media screen and (max-width: 649px){
+  .skills{
+    margin-top: 1555px;
+  }
+  .contact{
+    margin-top:950px;
+  }
+}
+
+/* Tablets and larger smartphones in portrait mode */
+@media screen and (max-width: 767px) {
+  .navbar-menu {
+    display: none;
+  }
+  .navbar span {
+    font-size: 40px;
+    color: #eeeeee;
+    transition:  0.9s ease-in-out;
+
+  }
+ 
+  .navbar-menu.active {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    transition: 0.9s ease;
+    top: 10%;
+    left: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    width: 100%;
+    text-align: center;
+  }
+
+  .navbar-menu.active a {
+    text-align: center;
+    padding: 20px;
+  }
+  .navbar-menu.active a:hover {
+    color: rgb(255, 255, 255);
+    text-decoration: underline;
+    text-decoration-line: blue;
+  }
+
+  .toggle-button {
+    display: block;
+    transition: 0.9s ease;
+    cursor: pointer;
+  }
+  #contact-section {
+    height: 140vh; 
+}
+}
+
+/* Most smartphones */
+@media screen and (max-width: 540px) {
+  .home-content h3 {
+    font-size: 1rem;
+  }
+  
+  .home-content h1 {
+    font-size: 3rem;
+  }
+  
+.title-text {
+  height: 50px;
+  font-size: 1.4rem;
+  color: #eeeeee;
+}
+.home {
+  height:200vh;
+  width: 100%;
+  display: block;
+  align-items: center;
+  color: #eeeeee;
+  padding-top: 90px;
+}
+#description-paragraph{
+  font-size: 15px;
+}
+.skills{
+  margin-top: 1555px;
+}
+.contact{
+  margin-top:950px;
+}
+
+}
+@media screen and (max-width:445px){
+  .skills{
+    margin-top: 2455px;
+  }
+  .contact{
+    margin-top:1950px;
+  }
+  #contact-section {
+    height: 140vh; 
+}
+.project-description{
+  padding: 10px;
+  margin: 10px
+  ;
+}
+}
+@media screen and (max-width:390px){
+  .home {
+    height:210vh;
+    width: 100%;
+    display: block;
+    align-items: center;
+    color: #eeeeee;
+    padding-top: 90px;
+  }
+}
+@media screen and (max-width:320px){
+  .home {
+    height: 290vh;
+    width: 100%;
+    display: block;
+    align-items: center;
+    color: #eeeeee;
+    padding-top: 90px;
+}
+.skills{
+  margin-top: 2955px;
+}
+.contact{
+  margin-top:1850px;
+}
 }
